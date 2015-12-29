@@ -6,3 +6,7 @@ default: &default
 development:
   <<: *default
   database: small_url
+
+test:
+  <<: *default
+  database: small_url_test
