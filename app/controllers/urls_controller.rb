@@ -51,6 +51,16 @@ class UrlsController < ApplicationController
     end
   end
 
+  def go_to_url
+    nickname = params[:path]
+    full_url = Url.find_by_nickname(nickname).try(:full_url)
+    if full_url.present?
+      redirect_to full_url
+    else
+      redirect_to urls_path, notice: 'URL nickname not found! Please try again'
+    end
+  end
+
   # DELETE /urls/1
   # DELETE /urls/1.json
   def destroy
